@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/title_rl"
+        style="@style/title_rl_style" >
+
+        <ImageView
+            android:id="@+id/title_back_img"
+            style="@style/title_left_bt_style" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:text="修改密码"
+            style="@style/title_center_tv_style" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:layout_margin="@dimen/dp_10"
+        android:orientation="vertical" >
+
+        <app.newbee.lib.view.common.ClearEditText
+            android:id="@+id/psd_1_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/sign_name"
+            android:background="@color/white"
+            android:gravity="left|center_vertical"
+            android:hint="输入旧密码"
+            android:inputType="textPassword"
+            android:padding="@dimen/dp_12"
+            android:textColorHint="@color/half_gray" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/dp_0_5"
+            android:background="@color/half_gray" />
+
+        <app.newbee.lib.view.common.ClearEditText
+            android:id="@+id/psd_2_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/textView"
+            android:background="@color/white"
+            android:gravity="left|center_vertical"
+            android:hint="输入新密码"
+            android:inputType="textPassword"
+            android:padding="@dimen/dp_12"
+            android:textColorHint="@color/half_gray" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/dp_0_5"
+            android:background="@color/half_gray" />
+
+        <app.newbee.lib.view.common.ClearEditText
+            android:id="@+id/psd_3_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/textView2"
+            android:background="@color/white"
+            android:gravity="left|center_vertical"
+            android:hint="确认密码"
+            android:inputType="textPassword"
+            android:padding="@dimen/dp_12"
+            android:textColorHint="@color/half_gray" />
+    </LinearLayout>
+    <Button
+            android:id="@+id/complete_bt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/button_blue_shape"
+            android:gravity="center"
+            android:paddingBottom="@dimen/dp_10"
+            android:paddingLeft="@dimen/dp_44"
+            android:paddingRight="@dimen/dp_44"
+            android:paddingTop="@dimen/dp_10"
+            android:text="完成"
+            android:textColor="@color/white" />
+    <!--<Button android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="完成"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:id="@+id/complete_bt"
+            />-->
+
+</LinearLayout>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/background"
+              android:orientation="vertical">
+
+    <RelativeLayout
+            android:id="@+id/title_rl"
+            style="@style/title_rl_style">
+        <ImageView
+                style="@style/title_left_bt_style"
+                android:id="@+id/title_back_img"/>
+
+        <TextView android:layout_centerInParent="true"
+                  android:layout_width="wrap_content"
+                  android:textSize="@dimen/sp_18"
+                  android:textStyle="bold"
+                  android:textColor="@color/white"
+                  android:layout_height="wrap_content" android:text="关于"
+                  android:id="@+id/textView"/>
+    </RelativeLayout>
+    <com.view.common.VScrollView android:layout_width="match_parent"
+                                 android:layout_height="match_parent"
+                                 android:scrollbars="none"
+                                 android:background="@color/background">
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/background"
+            android:orientation="vertical"
+            >
+
+        <ImageView android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:id="@+id/im_about"
+                   android:layout_gravity="center_horizontal"
+                   android:layout_marginTop="@dimen/dp_10"
+                   android:layout_centerHorizontal="true"/>
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/im_about"
+                android:layout_marginTop="@dimen/dp_10"
+                android:padding="@dimen/dp_4"
+                android:layout_marginLeft="@dimen/dp_6"
+                android:layout_marginRight="@dimen/dp_6"
+                android:orientation="vertical"
+                >
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:textSize="13dp"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingExtra="3dp"
+                    android:id="@+id/t1"
+                    android:paddingRight="@dimen/dp_10"
+                    android:paddingLeft="@dimen/dp_10"
+                    android:text="        北京超流利教育科技有限公司是一家从事成人及儿童口吃矫正和言语训练的专业教研机构，是超级演说家刘昀为了实现他的“让每一位口吃朋友都超流利的说起来”的公益梦想，发起成立的帮助口吃朋友的教育平台。
+
+刘昀毕业于清华大学，拥有学士和硕士学位。从小有口吃现象，与口吃斗争三十年，2014年参加安徽卫视超级演说家第二季比赛，以《再见口吃》一席演讲感动全场，成功突围，成为鲁豫战队成员，并通过节目历练彻底抛弃口吃。
+
+刘昀对口吃成因、口吃矫正训练方法、如何抑止反复并实现生活工作流利沟通有着深入和独特的理解，并总结出一套系统性的口吃矫正理论“口吃矫正金字塔理论”。该理论系统的研究了口吃的内外在原因和表现方式；科学的论述了口吃的矫正方法和提高措施；全面的闸述了实现超流利沟通的主客观能动性的辩证统一关系；充分的证明了只要全面的（而非片面的）系统的学习提升，告别口吃有法可循，指日可待。
+
+公司师资力量雄厚，不仅拥有全国著名的语言心理专家和言语训练专家，同时也吸纳了心理学、语言学、传播学、声乐学等一批德才兼备的高素质人才的加盟。目前，公司开设的语言类课程有：口吃矫正、吐字不清、正音普通话和少儿口才。
+
+在刘昀先生的带领下，公司必将以专业、用心、执着的态度为口吃的公益梦想迈出坚实的步伐……
+
+公司相信，在大家的一起努力下，让每一个口吃朋友都能超流利的说起来将不再是梦想！"
+
+                    />
+
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:textSize="13dp"
+                    android:id="@+id/t7"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingExtra="3dp"
+                    android:text="联系电话：010-56035800 (周一到周日全天)"
+                    android:paddingRight="@dimen/dp_10"
+                    android:paddingLeft="@dimen/dp_10"
+                    android:paddingTop="@dimen/dp_10"
+                    />
+            <TextView
+                    android:layout_below="@+id/t7"
+                    android:layout_width="wrap_content"
+                    android:textSize="13dp"
+                    android:id="@+id/t8"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingExtra="3dp"
+                    android:text="QQ 1：3121759479  QQ 2：2896373581  \n微信号：kouchi1688"
+                    android:paddingRight="@dimen/dp_10"
+                    android:paddingLeft="@dimen/dp_10"
+                    android:paddingTop="@dimen/dp_10"
+                    />
+            <TextView
+                    android:layout_below="@+id/t8"
+                    android:layout_width="wrap_content"
+                    android:textSize="13dp"
+                    android:id="@+id/t9"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingExtra="3dp"
+                    android:text="公司邮箱：admin@chaoliuli.com"
+                    android:paddingRight="@dimen/dp_10"
+                    android:paddingLeft="@dimen/dp_10"
+                    android:paddingTop="@dimen/dp_10"
+                    />
+            <TextView
+                    android:layout_below="@+id/t9"
+                    android:layout_width="wrap_content"
+                    android:textSize="13dp"
+                    android:id="@+id/t10"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingExtra="3dp"
+                    android:text="联系地址：北京市海淀区中关村大街18号中关村互联网教育创新中心955室。 （地铁4号线到中关村站C出口沿“中关村互联网教育创新中心”指示牌乘电梯到九楼955即到）"
+                    android:paddingRight="@dimen/dp_10"
+                    android:paddingLeft="@dimen/dp_10"
+                    android:paddingTop="@dimen/dp_10"
+                    />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    </com.view.common.VScrollView>
+
+</LinearLayout>
