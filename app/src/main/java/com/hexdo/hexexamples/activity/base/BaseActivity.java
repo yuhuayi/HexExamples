@@ -17,7 +17,7 @@ package com.hexdo.hexexamples.activity.base;
 import android.os.Bundle;
 import app.newbee.lib.base.BaseFragmentActivity;
 import app.newbee.lib.base.BaseView;
-import com.hexdo.hexexamples.GOEApp;
+import com.hexdo.hexexamples.HexApp;
 import com.squareup.leakcanary.RefWatcher;
 
 public abstract class BaseActivity extends BaseFragmentActivity implements BaseView {
@@ -48,7 +48,7 @@ public abstract class BaseActivity extends BaseFragmentActivity implements BaseV
         /**
          * 检测是否发生内存泄露
          */
-        RefWatcher refWatcher = GOEApp.getRefWatcher();
+        RefWatcher refWatcher = HexApp.getRefWatcher();
         refWatcher.watch(this);
     }
     @Override

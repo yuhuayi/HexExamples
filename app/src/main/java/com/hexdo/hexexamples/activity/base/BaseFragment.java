@@ -2,7 +2,7 @@ package com.hexdo.hexexamples.activity.base;
 
 import android.app.Activity;
 import app.newbee.lib.base.BaseView;
-import com.hexdo.hexexamples.GOEApp;
+import com.hexdo.hexexamples.HexApp;
 import com.squareup.leakcanary.RefWatcher;
 
 public abstract class BaseFragment extends app.newbee.lib.base.BaseFragment implements BaseView {
@@ -44,7 +44,7 @@ public abstract class BaseFragment extends app.newbee.lib.base.BaseFragment impl
         /**
          * 检测是否发生内存泄露
          */
-        RefWatcher refWatcher = GOEApp.getRefWatcher();
+        RefWatcher refWatcher = HexApp.getRefWatcher();
         refWatcher.watch(this);
         if (mCompositeSubscription != null) {
             mCompositeSubscription.unsubscribe();

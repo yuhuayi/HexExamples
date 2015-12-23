@@ -29,7 +29,7 @@ import rx.Observable;
 /**
  * Created by drakeet on 8/9/15.
  */
-public interface GOEInterface {
+public interface HexInterface {
 
     //           ---   user   start---//
 

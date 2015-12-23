@@ -29,7 +29,6 @@
             <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="120dp"
-                    android:background="@drawable/icon_default_img"
                     android:id="@+id/banner_container"
                     android:orientation="vertical">
             </FrameLayout>

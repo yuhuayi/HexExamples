@@ -34,7 +34,7 @@ import java.util.List;
  * 2015-08-07T03:57:47.229Z
  * Created by drakeet on 8/9/15.
  */
-public class GOERetrofit {
+public class HexRetrofit {
 
     public static final String API_BASE_URL = "http://goewww.atb2c.com:9900/";
 

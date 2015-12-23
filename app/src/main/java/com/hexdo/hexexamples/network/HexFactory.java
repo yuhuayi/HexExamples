@@ -23,16 +23,16 @@ package com.hexdo.hexexamples.network;
  * Singleton
  * 每个Interface 一个实例
  */
-public class GOEFactory {
+public class HexFactory {
 
     protected static final Object monitor = new Object();
-    protected static GOEInterface sSingleton = null;
+    protected static HexInterface sSingleton = null;
 
 
-    public static GOEInterface getSingleton() {
+    public static HexInterface getSingleton() {
         synchronized (monitor) {
             if (sSingleton == null) {
-                sSingleton = GOERetrofit.createService(GOEInterface.class);
+                sSingleton = HexRetrofit.createService(HexInterface.class);
             }
             return sSingleton;
         }

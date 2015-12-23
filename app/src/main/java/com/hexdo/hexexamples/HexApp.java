@@ -2,8 +2,7 @@ package com.hexdo.hexexamples;
 
 import android.app.Activity;
 import android.app.Application;
-import app.newbee.lib.util.DesCoder;
-import app.newbee.lib.util.LogUtil;
+import android.os.StrictMode;
 import com.hexdo.hexexamples.model.UserBean;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
@@ -11,38 +10,54 @@ import com.squareup.leakcanary.RefWatcher;
 import java.util.LinkedList;
 import java.util.List;
 
-public class GOEApp extends Application {
+import static android.os.Build.VERSION.SDK_INT;
+import static android.os.Build.VERSION_CODES.GINGERBREAD;
+
+public class HexApp extends Application {
 
 
     // 退出应用程序,销毁Activity相关
     public static List<Activity> activitys = null;
-    private static GOEApp _instance;
-    private RefWatcher _refWatcher;
-    public UserBean currentUser;
     /**
      * 开发版本 true, 生产版本 false
      */
     public static boolean develop_flag = true;
-
-    public static GOEApp get() {
-        return _instance;
-    }
+    private static HexApp _instance;
+    public UserBean currentUser;
+    private RefWatcher _refWatcher;
 
     public static RefWatcher getRefWatcher() {
-        return GOEApp.get()._refWatcher;
+        return HexApp.get()._refWatcher;
     }
 
+    public static HexApp get() {
+        return _instance;
+    }
 
     @Override
     public void onCreate() {
         super.onCreate();
         activitys = new LinkedList<Activity>();
-        _instance = (GOEApp) getApplicationContext();
+        _instance = (HexApp) getApplicationContext();
         /**
          * 检测内存泄露的
          */
         _refWatcher = LeakCanary.install(this);
 
+        enabledStrictMode();
+    }
+
+    /**
+     * 开启严格模式
+     */
+    private void enabledStrictMode() {
+        if (SDK_INT >= GINGERBREAD) {
+            StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder() //
+                    .detectAll()  //
+                    .penaltyLog() //
+                    .penaltyDeath() //
+                    .build());
+        }
     }
 
     public UserBean getCurrentUser() {
@@ -52,8 +67,6 @@ public class GOEApp extends Application {
         }
         return currentUser;
     }
-
-
 
     // 添加Activity到容器中
     public void addActivity(Activity activity) {
@@ -83,12 +96,6 @@ public class GOEApp extends Application {
                 }
             }
         }
-    }
-    public static String encryptionRequestparam(String query) {
-        String encrypt_Key = DesCoder.encode(GOEConstants.encrypt_Key, query);
-        LogUtil.info("加密前: " + query);
-        LogUtil.info("加密后: " + DesCoder.encode(GOEConstants.encrypt_Key, encrypt_Key));
-        return encrypt_Key;
     }
 
 }

@@ -4,7 +4,6 @@
     <style name="AppTheme" parent="android:Theme.Light"/>
 
     <style name="Transparent" parent="Theme.AppCompat">
-
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowSoftInputMode">stateHidden</item>
     </style>

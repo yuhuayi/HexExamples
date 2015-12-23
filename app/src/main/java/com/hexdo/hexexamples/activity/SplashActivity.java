@@ -8,7 +8,6 @@ import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 import android.widget.ImageView;
 import app.newbee.lib.netstatus.NetUtils;
-import app.newbee.lib.util.PreferencesUtils;
 import com.hexdo.hexexamples.R;
 import com.hexdo.hexexamples.activity.base.BaseActivity;
 
@@ -68,7 +67,8 @@ public class SplashActivity extends BaseActivity {
             }
 
             public void onAnimationEnd(Animation animation) {
-                boolean firstIn = PreferencesUtils.getBoolean(SplashActivity.this, "firstIn", true);
+//                boolean firstIn = PreferencesUtils.getBoolean(SplashActivity.this, "firstIn", true);
+                boolean firstIn = false;
                 Intent intent = null;
                 if (firstIn) {
                     // 第一次运行,打开引导页
@@ -76,7 +76,8 @@ public class SplashActivity extends BaseActivity {
                     startActivity(intent);
                     finish();
                 } else {
-                    intent = new Intent(SplashActivity.this, MainActivity.class);
+//                    intent = new Intent(SplashActivity.this, MainActivity.class);
+                    intent = new Intent(SplashActivity.this, MainCompatActivity.class);
                     startActivity(intent);
 //                    overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
                     finish();

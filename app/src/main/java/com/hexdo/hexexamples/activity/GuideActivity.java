@@ -24,7 +24,8 @@ public class GuideActivity extends BaseActivity {
 
     private List<View> viewList;            // Tab页面列表
 
-    private int[] imageIds = new int[]{R.drawable.help_one, R.drawable.help_two, R.drawable.help_three};
+    //    private int[] imageIds = new int[]{R.drawable.help_one, R.drawable.help_two, R.drawable.help_three};
+    private int[] imageIds = new int[]{};
 
     @Override protected boolean toggleOverridePendingTransition() {
         return false;
@@ -73,7 +74,7 @@ public class GuideActivity extends BaseActivity {
                     @Override
                     public void onClick(View v) {
                         PreferencesUtils.putBoolean(GuideActivity.this, "firstIn", false);
-                        gotoSubActivity(MainActivity.class, null);
+                        gotoSubActivity(MainCompatActivity.class, null);
                         finish();
                     }
                 });

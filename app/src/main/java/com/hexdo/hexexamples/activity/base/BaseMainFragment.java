@@ -2,7 +2,6 @@ package com.hexdo.hexexamples.activity.base;
 
 import android.app.Activity;
 import app.newbee.lib.base.BaseFragment;
-import com.hexdo.hexexamples.activity.MainActivity;
 
 public abstract class BaseMainFragment extends BaseFragment {
     public MainActivity mActivity;
