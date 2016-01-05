@@ -35,25 +35,20 @@
             android:supportsRtl="true"
             android:name=".HexApp"
             android:theme="@style/AppTheme">
-        <!--<activity android:name=".activity.SplashActivity">-->
-        <!--<intent-filter>-->
-        <!--<action android:name="android.intent.action.MAIN"/>-->
-        <!--<category android:name="android.intent.category.LAUNCHER"/>-->
-        <!--</intent-filter>-->
-        <!--</activity>-->
-        <activity android:name=".activity.MainCompatActivity"
+        <activity android:name=".activity.MainActivity"
                   android:launchMode="singleTask"
-                  android:theme="@style/Transparent">
+                  android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-
-        <activity android:name=".activity.GuideActivity" android:launchMode="singleTask"
-                  android:theme="@style/Transparent"/>
+        <activity android:name=".activity.UserProfileActivity"
+                  android:theme="@style/AppTheme.TransparentActivity"/>
+        <activity android:name=".activity.GuideActivity"
+                  android:theme="@style/AppTheme.TransparentActivity"/>
         <activity android:name="app.newbee.lib.base.BaseSubActivity"
-                  android:theme="@style/Transparent"/>
+                  android:theme="@style/AppTheme.TransparentActivity"/>
     </application>
 
 </manifest>

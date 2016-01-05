@@ -1,15 +1,14 @@
 package app.newbee.lib.util;
 
-import android.content.Context;
+import android.content.res.Resources;
 
 public class DensityUtil {
-	public static int dip2px(Context context, float dpValue) {
-		final float scale = context.getResources().getDisplayMetrics().density;
-		return (int) (dpValue * scale + 0.5f);
-	}
+    public static int dpToPx(float dpValue) {
+        return (int) (dpValue * Resources.getSystem().getDisplayMetrics().density);
+    }
 
-	public static int px2dip(Context context, float pxValue) {
-		final float scale = context.getResources().getDisplayMetrics().density;
-		return (int) (pxValue / scale + 0.5f);
-	}
+    public static int px2Dp(float pxValue) {
+        final float scale = Resources.getSystem().getDisplayMetrics().density;
+        return (int) (pxValue / scale + 0.5f);
+    }
 }

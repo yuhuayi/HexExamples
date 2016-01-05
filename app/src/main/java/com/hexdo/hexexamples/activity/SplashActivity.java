@@ -51,9 +51,13 @@ public class SplashActivity extends BaseActivity {
     }
 
     @Override
-    protected void processLogic() {
+    protected void processLogic(Bundle savedInstanceState) {
 
         start();
+    }
+
+    @Override protected void setListener() {
+
     }
 
     private void start() {
@@ -77,7 +81,7 @@ public class SplashActivity extends BaseActivity {
                     finish();
                 } else {
 //                    intent = new Intent(SplashActivity.this, MainActivity.class);
-                    intent = new Intent(SplashActivity.this, MainCompatActivity.class);
+                    intent = new Intent(SplashActivity.this, MainActivity.class);
                     startActivity(intent);
 //                    overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
                     finish();

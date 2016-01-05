@@ -19,22 +19,24 @@
 
 package com.hexdo.hexexamples.network;
 
-import com.hexdo.hexexamples.model.ResultWrap;
-import com.hexdo.hexexamples.model.UserBean;
-import com.hexdo.hexexamples.model.wrap.ResposeWrap;
+import com.hexdo.hexexamples.model.GitHubRepository;
+import com.hexdo.hexexamples.model.GitHubRepositorySearchResults;
 import retrofit.http.GET;
-import retrofit.http.Query;
+import retrofit.http.Path;
+import retrofit.http.QueryMap;
 import rx.Observable;
+
+import java.util.Map;
 
 /**
  * Created by drakeet on 8/9/15.
  */
 public interface HexInterface {
 
-    //           ---   user   start---//
 
-    @GET("router") Observable<ResultWrap<ResposeWrap<UserBean>>> login(@Query("data") String data);
+    @GET("/search/repositories") Observable<GitHubRepositorySearchResults> search(@QueryMap Map<String, String> search);
 
+    @GET("/repositories/{id}") Observable<GitHubRepository> getRepository(@Path("id") Integer id);
 
   /*
     ex:  Call<User> call = userService.me();
@@ -47,8 +49,6 @@ public interface HexInterface {
 
 
     //           ---   user    end ---//
-
-
 
 
 }

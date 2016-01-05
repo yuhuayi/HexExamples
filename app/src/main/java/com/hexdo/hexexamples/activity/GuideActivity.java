@@ -59,7 +59,7 @@ public class GuideActivity extends BaseActivity {
         return null;
     }
 
-    @Override protected void processLogic() {
+    @Override protected void processLogic(Bundle savedInstanceState) {
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         viewList = new ArrayList<View>();
 
@@ -74,7 +74,7 @@ public class GuideActivity extends BaseActivity {
                     @Override
                     public void onClick(View v) {
                         PreferencesUtils.putBoolean(GuideActivity.this, "firstIn", false);
-                        gotoSubActivity(MainCompatActivity.class, null);
+                        gotoSubActivity(MainActivity.class, null);
                         finish();
                     }
                 });
@@ -107,6 +107,10 @@ public class GuideActivity extends BaseActivity {
         };
 
         viewPager.setAdapter(pagerAdapter);
+    }
+
+    @Override protected void setListener() {
+
     }
 
     @Override protected boolean isApplyKitKatTranslucency() {

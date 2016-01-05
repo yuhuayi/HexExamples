@@ -72,7 +72,7 @@ public abstract class BaseFragmentActivity extends FragmentActivity {
         if (isApplyKitKatTranslucency()) {
             setSystemBarTintDrawable(getResources().getDrawable(R.drawable.sr_primary));
         }
-        initView();
+        initView(savedInstanceState);
     }
 
     @Override
@@ -117,9 +117,11 @@ public abstract class BaseFragmentActivity extends FragmentActivity {
 
     /**
      * 初始activity方法
+     *
+     * @param savedInstanceState
      */
 
-    private void initView() {
+    private void initView(Bundle savedInstanceState) {
         BaseAppManager.getInstance().addActivity(this);
         TAG_LOG = this.getClass().getSimpleName();
 
@@ -158,16 +160,20 @@ public abstract class BaseFragmentActivity extends FragmentActivity {
         // view init start
         if (getContentViewLayoutID() != 0) {
             setContentView(getContentViewLayoutID());
+            //注入view
+            injectView();
         } else {
             throw new IllegalArgumentException("You must return a right contentView layout resource Id");
         }
 
-        ButterKnife.bind(this);
         if (null != getLoadingTargetView()) {
             mVaryViewHelperController = new VaryViewHelperController(getLoadingTargetView());
         }
+        //binding
+        ButterKnife.bind(this);
+
         // view init end
-        processLogic();
+        processLogic(savedInstanceState);
     }
 
     /**
@@ -220,6 +226,9 @@ public abstract class BaseFragmentActivity extends FragmentActivity {
      */
     protected abstract int getContentViewLayoutID();
 
+    protected void injectView() {
+    }
+
     /**
      * get loading target view
      */
@@ -227,8 +236,10 @@ public abstract class BaseFragmentActivity extends FragmentActivity {
 
     /**
      * 业务逻辑处理，主要与后端交互
+     *
+     * @param savedInstanceState
      */
-    protected abstract void processLogic();
+    protected abstract void processLogic(Bundle savedInstanceState);
 
     /**
      * startActivity
@@ -397,9 +408,9 @@ public abstract class BaseFragmentActivity extends FragmentActivity {
         if (isShowAnimation)
 //            ft.setCustomAnimations(R.anim.push_left_in, R.anim.push_left_out, R.anim.push_right_in, R.anim.push_right_out); // 左右推进推出
 
-        if (currentFragment != null) {
-            ft.hide(currentFragment);
-        }
+            if (currentFragment != null) {
+                ft.hide(currentFragment);
+            }
         String key = targetPageClazz.getCanonicalName() + "_" + targetFragmentId;
         BaseFragment targetFragment = (BaseFragment) getSupportFragmentManager().findFragmentByTag(key);
         if (targetFragment == null) {
@@ -553,10 +564,14 @@ public abstract class BaseFragmentActivity extends FragmentActivity {
     }
 
     /**
+     * 注册listener , 以及逻辑处理
+     */
+    protected abstract void setListener();
+
+    /**
      * overridePendingTransition mode
      */
     public enum TransitionMode {
         LEFT, RIGHT, TOP, BOTTOM, SCALE, FADE
     }
-
 }

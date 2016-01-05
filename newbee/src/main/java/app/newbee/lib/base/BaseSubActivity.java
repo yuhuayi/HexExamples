@@ -53,8 +53,12 @@ public class BaseSubActivity extends BaseFragmentActivity implements View.OnClic
     }
 
     @Override
-    protected void processLogic() {
+    protected void processLogic(Bundle savedInstanceState) {
         showTargetPage();
+    }
+
+    @Override protected void setListener() {
+
     }
 
     public void showTargetPage() {

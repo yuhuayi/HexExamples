@@ -269,4 +269,9 @@ public abstract class BaseFragment extends Fragment {
         }
     }
 
+    /**
+     * 注册listener , 以及逻辑处理
+     */
+    protected abstract void setListener();
+
 }

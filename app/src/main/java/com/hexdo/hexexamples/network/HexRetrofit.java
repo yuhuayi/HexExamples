@@ -36,7 +36,7 @@ import java.util.List;
  */
 public class HexRetrofit {
 
-    public static final String API_BASE_URL = "http://goewww.atb2c.com:9900/";
+    public static final String API_BASE_URL = "https://api.github.com";
 
     private static OkHttpClient httpClient = new OkHttpClient();
     private static Retrofit.Builder builder =

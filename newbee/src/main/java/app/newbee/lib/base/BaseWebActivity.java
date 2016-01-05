@@ -91,7 +91,7 @@ public class BaseWebActivity extends BaseSwipeBackCompatActivity {
         return null;
     }
 
-    @Override protected void processLogic() {
+    @Override protected void processLogic(Bundle savedInstanceState) {
         setSystemBarTintDrawable(getResources().getDrawable(R.drawable.sr_primary));
 
         mToolBar = ButterKnife.findById(this, R.id.common_toolbar);
@@ -120,5 +120,9 @@ public class BaseWebActivity extends BaseSwipeBackCompatActivity {
         } else {
             mBrowserLayout.showBrowserController();
         }
+    }
+
+    @Override protected void setListener() {
+
     }
 }

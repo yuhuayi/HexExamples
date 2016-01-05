@@ -73,7 +73,7 @@ public abstract class BaseCompatActivity extends AppCompatActivity {
         if (isApplyKitKatTranslucency()) {
             setSystemBarTintDrawable(getResources().getDrawable(R.drawable.sr_primary));
         }
-        initView();
+        initView(savedInstanceState);
     }
 
     @Override
@@ -118,9 +118,11 @@ public abstract class BaseCompatActivity extends AppCompatActivity {
 
     /**
      * 初始activity方法
+     *
+     * @param savedInstanceState
      */
 
-    private void initView() {
+    private void initView(Bundle savedInstanceState) {
         BaseAppManager.getInstance().addActivity(this);
         TAG_LOG = this.getClass().getSimpleName();
 
@@ -159,16 +161,18 @@ public abstract class BaseCompatActivity extends AppCompatActivity {
         // view init start
         if (getContentViewLayoutID() != 0) {
             setContentView(getContentViewLayoutID());
+            injectView();
         } else {
             throw new IllegalArgumentException("You must return a right contentView layout resource Id");
         }
-
-        ButterKnife.bind(this);
         if (null != getLoadingTargetView()) {
             mVaryViewHelperController = new VaryViewHelperController(getLoadingTargetView());
         }
+        //inject view
+        ButterKnife.bind(this);
         // view init end
-        processLogic();
+        processLogic(savedInstanceState);
+
     }
 
     /**
@@ -190,6 +194,51 @@ public abstract class BaseCompatActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * is applyStatusBarTranslucency
+     *
+     * @return
+     */
+    protected abstract boolean isApplyStatusBarTranslucency();
+
+    /**
+     * get bundle data
+     *
+     * @param extras
+     */
+    protected abstract void getBundleExtras(Bundle extras);
+
+    /**
+     * network connected
+     */
+    protected abstract void onNetworkConnected(NetUtils.NetType type);
+
+    /**
+     * network disconnected
+     */
+    protected abstract void onNetworkDisConnected();
+
+    /**
+     * bind layout resource file
+     *
+     * @return id of layout resource
+     */
+    protected abstract int getContentViewLayoutID();
+
+    protected void injectView() {
+    }
+
+    /**
+     * get loading target view
+     */
+    protected abstract View getLoadingTargetView();
+
+    /**
+     * 业务逻辑处理，主要与后端交互
+     *
+     * @param savedInstanceState
+     */
+    protected abstract void processLogic(Bundle savedInstanceState);
 
     /**
      * startActivity
@@ -224,6 +273,34 @@ public abstract class BaseCompatActivity extends AppCompatActivity {
         Intent intent = new Intent(this, clazz);
         startActivity(intent);
         finish();
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        BaseAppManager.getInstance().removeActivity(this);
+        if (toggleOverridePendingTransition()) {
+            switch (getOverridePendingTransitionMode()) {
+                case LEFT:
+                    overridePendingTransition(R.anim.left_in, R.anim.left_out);
+                    break;
+                case RIGHT:
+                    overridePendingTransition(R.anim.right_in, R.anim.right_out);
+                    break;
+                case TOP:
+                    overridePendingTransition(R.anim.top_in, R.anim.top_out);
+                    break;
+                case BOTTOM:
+                    overridePendingTransition(R.anim.bottom_in, R.anim.bottom_out);
+                    break;
+                case SCALE:
+                    overridePendingTransition(R.anim.scale_in, R.anim.scale_out);
+                    break;
+                case FADE:
+                    overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                    break;
+            }
+        }
     }
 
     /**
@@ -268,48 +345,6 @@ public abstract class BaseCompatActivity extends AppCompatActivity {
     }
 
     /**
-     * get bundle data
-     *
-     * @param extras
-     */
-    protected abstract void getBundleExtras(Bundle extras);
-
-    /**
-     * is applyStatusBarTranslucency
-     *
-     * @return
-     */
-    protected abstract boolean isApplyStatusBarTranslucency();
-
-    /**
-     * network connected
-     */
-    protected abstract void onNetworkConnected(NetUtils.NetType type);
-
-    /**
-     * network disconnected
-     */
-    protected abstract void onNetworkDisConnected();
-
-    /**
-     * bind layout resource file
-     *
-     * @return id of layout resource
-     */
-    protected abstract int getContentViewLayoutID();
-
-
-    /**
-     * get loading target view
-     */
-    protected abstract View getLoadingTargetView();
-
-    /**
-     * 业务逻辑处理，主要与后端交互
-     */
-    protected abstract void processLogic();
-
-    /**
      * 收起软键盘
      */
     public void showSoftInput(final View v) {
@@ -345,34 +380,6 @@ public abstract class BaseCompatActivity extends AppCompatActivity {
             intent.putExtras(bundle);
         }
         startActivity(intent);
-    }
-
-    @Override
-    public void finish() {
-        super.finish();
-        BaseAppManager.getInstance().removeActivity(this);
-        if (toggleOverridePendingTransition()) {
-            switch (getOverridePendingTransitionMode()) {
-                case LEFT:
-                    overridePendingTransition(R.anim.left_in, R.anim.left_out);
-                    break;
-                case RIGHT:
-                    overridePendingTransition(R.anim.right_in, R.anim.right_out);
-                    break;
-                case TOP:
-                    overridePendingTransition(R.anim.top_in, R.anim.top_out);
-                    break;
-                case BOTTOM:
-                    overridePendingTransition(R.anim.bottom_in, R.anim.bottom_out);
-                    break;
-                case SCALE:
-                    overridePendingTransition(R.anim.scale_in, R.anim.scale_out);
-                    break;
-                case FADE:
-                    overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-                    break;
-            }
-        }
     }
 
     /**
@@ -555,11 +562,16 @@ public abstract class BaseCompatActivity extends AppCompatActivity {
     }
 
     /**
+     * 注册listener , 以及逻辑处理
+     */
+    protected abstract void setListener();
+
+
+    /**
      * overridePendingTransition mode
      */
     public enum TransitionMode {
         LEFT, RIGHT, TOP, BOTTOM, SCALE, FADE
     }
-
 
 }
